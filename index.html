@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRAWL DIARY</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+        body{background:#12121F;color:#E2E2F0;padding:15px}
+        .container{max-width:550px;margin:0 auto}
+        header{background:linear-gradient(90deg,#2A1B4E,#1A2B5C);padding:1.2rem;border-radius:12px;text-align:center;margin-bottom:1rem}
+        header h1{font-size:1.8rem;background:linear-gradient(90deg,#FF4EC0,#2E8CFF);-webkit-background-clip:text;background-clip:text;color:transparent}
+        section{background:#1E1E2F;padding:1.2rem;border-radius:14px;margin-bottom:1.2rem;border:1px solid #333355}
+        h2{font-size:1.25rem;text-align:center;margin-bottom:1rem}
+        .bloco-valor{background:#252538;padding:1rem;border-radius:12px;text-align:center;margin:1rem 0;border:1px solid #3A3A5C}
+        .valor-grande{font-size:2rem;font-weight:bold;color:#7B61FF}
+        .aviso-amarelo{background:linear-gradient(90deg,#3A3020,#2E2618);border:1px solid #887030;border-radius:12px;padding:1rem;margin:1rem 0;color:#FFD566}
+        .bloco-premio{background:linear-gradient(135deg,#2A2040,#202A50);border:1px solid #554099;border-radius:12px;padding:1rem;margin:1rem 0;text-align:center}
+        .vagas{display:flex;justify-content:space-around;background:#252538;padding:.8rem;border-radius:10px;margin:1rem 0;flex-wrap:wrap;gap:.5rem}
+        input{width:100%;padding:.9rem;margin:.5rem 0;border:1px solid #444466;border-radius:10px;background:#252538;color:#FFF;font-size:1rem}
+        button{width:100%;padding:.9rem;border:none;border-radius:10px;font-weight:bold;cursor:pointer;margin:.5rem 0}
+        .btn-principal{background:linear-gradient(90deg,#FF2EB6,#9D2EFF);color:#FFF}
+        .btn-limpar{background:linear-gradient(90deg,#E53935,#B71C1C);color:#FFF}
+        ul{list-style:none;margin-top:1rem}
+        li{background:#252538;padding:.8rem;border-radius:8px;margin:.5rem 0;border:1px solid #3A3A5C;text-align:center}
+        table{width:100%;border-collapse:collapse;margin-top:1rem}
+        th,td{padding:.7rem;text-align:left;border-bottom:1px solid #333355}
+        th{background:#252538}
+        .acesso-admin{text-align:center;padding:1.2rem;background:#252538;border-radius:12px;margin:2rem 0;border:1px dashed #7B61FF}
+        .area-admin{border:2px solid #554099;background:#1A1A2E;padding:1.2rem;border-radius:12px;margin-top:1.5rem}
+        .interruptor{display:flex;justify-content:space-between;align-items:center;background:#252538;padding:.8rem;border-radius:8px;margin:.8rem 0}
+        .switch{position:relative;display:inline-block;width:44px;height:22px}
+        .switch input{opacity:0;width:0;height:0}
+        .slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:#444466;border-radius:22px;transition:.3s}
+        .slider:before{position:absolute;content:"";height:16px;width:16px;left:3px;bottom:3px;background:#FFF;border-radius:50%;transition:.3s}
+        input:checked+.slider{background:#25D366}
+        input:checked+.slider:before{transform:translateX(22px)}
+        .oculto{display:none!important}
+        footer{text-align:center;padding:1rem;color:#8888AA;font-size:.9rem}
+    </style>
+</head>
+<body>
+
+<div id="telaDesativada" class="container">
+    <div style="text-align:center;padding:3rem 1.5rem;background:#1E1E2F;border-radius:14px;margin:2rem auto;border:1px solid #FF7090">
+        <h2 style="color:#FF7090">🚫 Inscrições Fechadas</h2>
+        <p style="margin-top:1rem">As inscrições estão temporariamente encerradas.</p>
+    </div>
+    <div class="acesso-admin">
+        <h3>🔑 Acesso Administrativo</h3>
+        <input type="password" id="senhaAdmin" placeholder="Digite a senha">
+        <button type="button" onclick="abrirAdmin()" class="btn-principal">🔓 Entrar</button>
+    </div>
+    <div id="areaAdmin" class="area-admin oculto">
+        <h2>🔐 Área do Administrador</h2>
+        <div class="interruptor">
+            <span>Status do Sistema: <strong id="statusSistema">DESATIVADO</strong></span>
+            <label class="switch"><input type="checkbox" id="ligarSistema" onchange="alterarSistema(this.checked)"><span class="slider"></span></label>
+        </div>
+        <input type="url" id="linkSalaAdmin" placeholder="Link da sala">
+        <input type="text" id="chavePixAdmin" value="00000000000" placeholder="Chave Pix">
+        <input type="tel" id="whatsappAdmin" value="00000000000" placeholder="WhatsApp">
+        <button onclick="salvarConfig()" class="btn-principal">💾 Salvar</button>
+        <button onclick="limparInscritos()" class="btn-limpar">🗑️ Limpar Inscrições</button>
+        <button onclick="zerarPlacar()" class="btn-limpar">❌ Zerar Placar</button>
+        <button onclick="document.getElementById('areaAdmin').classList.add('oculto')" class="btn-limpar">🔒 Sair</button>
+        <h3 style="margin-top:1.5rem;color:#FFD566">📋 Inscritos</h3>
+        <table><thead><tr><th>Nome</th><th>Nick</th><th>Tel</th><th>Liberar</th></tr></thead><tbody id="tbInscritos"></tbody></table>
+        <h3 style="margin-top:1.5rem;color:#FFD566">📝 Resultado</h3>
+        <input type="text" id="nickResultado" placeholder="Nick">
+        <input type="number" id="abatesResultado" min="0" placeholder="Abates">
+        <label style="display:flex;align-items:center;gap:8px;margin:.5rem 0"><input type="checkbox" id="primeiroLugar"> 1º Lugar (+R$10)</label>
+        <button onclick="salvarResultado()" class="btn-principal">✅ Salvar</button>
+    </div>
+</div>
+
+<div id="conteudoPrincipal" class="container oculto">
+    <header><h1>📒 BRAWL DIARY</h1><p>Competição • Inscrições</p></header>
+    <section>
+        <h2>🎯 Regras</h2>
+        <div class="bloco-valor"><p>Taxa de Inscrição</p><div class="valor-grande">R$ 4,00</div></div>
+        <div class="aviso-amarelo">⚠️ Após o pagamento, aguarde a liberação do acesso.</div>
+        <div class="bloco-premio"><h3>Premiação</h3><p>🥇 1º Lugar: R$ 10,00</p><p>⚔️ Por abate: R$ 1,70</p></div>
+        <div class="vagas"><span>Total: 9 vagas</span><span id="vagasOcupadas">✅ Inscritos: 0</span><span id="vagasRestantes">🔄 Livres: 9</span></div>
+        <h3>📋 Lista de Inscritos</h3><ul id="listaPublica"></ul>
+    </section>
+    <section>
+        <h2>📝 Fazer Inscrição</h2>
+        <form id="formInscricao" onsubmit="return inscrever()">
+            <input type="text" id="nome" required placeholder="Nome completo">
+            <input type="tel" id="telefone" required placeholder="Telefone">
+            <input type="text" id="nick" required placeholder="Nick no jogo">
+            <button type="submit" class="btn-principal">✅ Confirmar Inscrição</button>
+        </form>
+        <div id="areaInscrito" class="oculto">
+            <div style="background:#202A40;border:1px solid #4CD9B0;border-radius:12px;padding:1rem;margin:1rem 0;text-align:center">
+                <h3 style="color:#4CD9B0">✅ Inscrição Concluída!</h3>
+                <p>Envie o comprovante para confirmar sua vaga.</p>
+            </div>
+            <h3 style="text-align:center;margin:1.5rem 0 .5rem;color:#4CD9B0">💳 Pagamento com a chave abaixo</h3>
+            <div class="bloco-valor" id="chavePix">00000000000</div>
+            <a id="linkWhatsapp" href="https://wa.me/00000000000" target="_blank"><button class="btn-principal">💬 Enviar Comprovante</button></a>
+            <div id="areaLiberada" class="oculto">
+                <h3 style="color:#00E676;text-align:center;margin-top:1.5rem">🔓 Acesso Liberado!</h3>
+                <a id="linkSala" href="#" target="_blank"><button class="btn-principal">🚪 Entrar na Sala</button></a>
+            </div>
+        </div>
+    </section>
+    <section>
+        <h2>🏆 Placar Geral</h2>
+        <table><thead><tr><th>Posição</th><th>Nick</th><th>Partidas</th><th>Total (R$)</th></tr></thead><tbody id="tbPlacar"></tbody></table>
+    </section>
+    <div class="acesso-admin">
+        <h3>🔑 Acesso Administrativo</h3>
+        <input type="password" id="senhaAdmin2" placeholder="Digite a senha">
+        <button type="button" onclick="abrirAdmin2()" class="btn-principal">🔓 Entrar</button>
+    </div>
+    <div id="areaAdmin2" class="area-admin oculto">
+        <h2>🔐 Área do Administrador</h2>
+        <div class="interruptor">
+            <span>Status do Sistema: <strong id="statusSistema2">ATIVADO</strong></span>
+            <label class="switch"><input type="checkbox" id="ligarSistema2" checked onchange="alterarSistema(this.checked)"><span class="slider"></span></label>
+        </div>
+        <input type="url" id="linkSalaAdmin2" placeholder="Link da sala">
+        <input type="text" id="chavePixAdmin2" value="00000000000" placeholder="Chave Pix">
+        <input type="tel" id="whatsappAdmin2" value="00000000000" placeholder="WhatsApp">
+        <button onclick="salvarConfig()" class="btn-principal">💾 Salvar</button>
+        <button onclick="limparInscritos()" class="btn-limpar">🗑️ Limpar Inscrições</button>
+        <button onclick="zerarPlacar()" class="btn-limpar">❌ Zerar Placar</button>
+        <button onclick="document.getElementById('areaAdmin2').classList.add('oculto')" class="btn-limpar">🔒 Sair</button>
+        <h3 style="margin-top:1.5rem;color:#FFD566">📋 Inscritos</h3>
+        <table><thead><tr><th>Nome</th><th>Nick</th><th>Tel</th><th>Liberar</th></tr></thead><tbody id="tbInscritos2"></tbody></table>
+        <h3 style="margin-top:1.5rem;color:#FFD566">📝 Resultado</h3>
+        <input type="text" id="nickResultado2" placeholder="Nick">
+        <input type="number" id="abatesResultado2" min="0" placeholder="Abates">
+        <label style="display:flex;align-items:center;gap:8px;margin:.5rem 0"><input type="checkbox" id="primeiroLugar2"> 1º Lugar (+R$10)</label>
+        <button onclick="salvarResultado2()" class="btn-principal">✅ Salvar</button>
+    </div>
+    <footer>© 2026 BRAWL DIARY</footer>
+</div>
+
+<script>
+// ✅ SENHA DE ACESSO CORRETA
+const SENHA_ADMIN = "996616825";
+const LIMITE_VAGAS = 9;
+const VALOR_ABATE = 1.70;
+const PREMIO_PRIMEIRO = 10.00;
+
+let inscritos = JSON.parse(localStorage.getItem("inscritos")) || [];
+let placar = JSON.parse(localStorage.getItem("placar")) || [];
+let sistemaAtivo = JSON.parse(localStorage.getItem("sistemaAtivo")) || false;
+
+function salvarDados(){
+    localStorage.setItem("inscritos",JSON.stringify(inscritos));
+    localStorage.setItem("placar",JSON.stringify(placar));
+    localStorage.setItem("sistemaAtivo",JSON.stringify(sistemaAtivo));
+}
+
+function atualizarTela(){
+    if(sistemaAtivo){
+        document.getElementById("telaDesativada").classList.add("oculto");
+        document.getElementById("conteudoPrincipal").classList.remove("oculto");
+        document.getElementById("statusSistema2").textContent = "ATIVADO";
+        document.getElementById("statusSistema2").style.color = "#25D366";
+    }else{
+        document.getElementById("telaDesativada").classList.remove("oculto");
+        document.getElementById("conteudoPrincipal").classList.add("oculto");
+        document.getElementById("statusSistema").textContent = "DESATIVADO";
+        document.getElementById("statusSistema").style.color = "#FF7090";
+    }
+    atualizarVagas();
+    atualizarListas();
+    atualizarPlacar();
+}
+
+function atualizarVagas(){
+    document.getElementById("vagasOcupadas").textContent = `✅ Inscritos: ${inscritos.length}`;
+    document.getElementById("vagasRestantes").textContent = `🔄 Livres: ${LIMITE_VAGAS - inscritos.length}`;
+}
+
+function atualizarListas(){
+    const lista = document.getElementById("listaPublica");
+    lista.innerHTML = inscritos.length ? inscritos.map(i=>`<li>${i.nick}</li>`).join("") : "<li>Ninguém inscrito ainda</li>";
+    const tb1 = document.getElementById("tbInscritos"), tb2 = document.getElementById("tbInscritos2");
+    tb1.innerHTML = tb2.innerHTML = inscritos.map((i,idx)=>`<tr><td>${i.nome}</td><td>${i.nick}</td><td>${i.telefone}</td><td><label class="switch"><input type="checkbox" ${i.liberado?"checked":""} onchange="alterarLiberacao(${idx},this.checked)"><span class="slider"></span></label></td></tr>`).join("");
+}
+
+function atualizarPlacar(){
+    const tb = document.getElementById("tbPlacar");
+    tb.innerHTML = placar.length ? placar.sort((a,b)=>b.saldo - a.saldo).map((j,i)=>`<tr><td>${i+1}º</td><td>${j.nick}</td><td>${j.partidas}</td><td style="color:${j.saldo>=0?'#4CD9B0':'#FF7090'}">R$ ${j.saldo.toFixed(2)}</td></tr>`).join("") : `<tr><td colspan="4" style="text-align:center; color:#8888AA;">Nenhuma partida registrada</td></tr>`;
+}
+
+function alterarLiberacao(i,ok){
+    inscritos[i].liberado = ok;
+    salvarDados();
+}
+
+// ✅ Funções de acesso corrigidas
+function abrirAdmin(){
+    const senha = document.getElementById("senhaAdmin").value.trim();
+    if(senha === SENHA_ADMIN){
+        document.getElementById("areaAdmin").classList.remove("oculto");
+        document.getElementById("senhaAdmin").value = "";
+    }else{
+        alert("❌ Senha incorreta!");
+    }
+}
+
+function abrirAdmin2(){
+    const senha = document.getElementById("senhaAdmin2").value.trim();
+    if(senha === SENHA_ADMIN){
+        document.getElementById("areaAdmin2").classList.remove("oculto");
+        document.getElementById("senhaAdmin2").value = "";
+    }else{
+        alert("❌ Senha incorreta!");
+    }
+
+}
+
+function alterarSistema(ativo){
+    sistemaAtivo = ativo;
+    salvarDados();
+    atualizarTela();
+}
+
+function inscrever(){
+    const nome = document.getElementById("nome").value.trim();
+    const tel = document.getElementById("telefone").value.trim();
+    const nick = document.getElementById("nick").value.trim();
+    if(inscritos.length >= LIMITE_VAGAS){
+        alert("❌ Vagas esgotadas!");
+        return false;
+    }
+    if(inscritos.some(i=>i.telefone===tel || i.nick.toLowerCase()===nick.toLowerCase())){
+        alert("⚠️ Telefone ou Nick já cadastrado!");
+        return false;
+    }
+    inscritos.push({nome, telefone:tel, nick, liberado:false});
+    salvarDados();
+    atualizarTela();
+    document.getElementById("formInscricao").classList.add("oculto");
+    document.getElementById("areaInscrito").classList.remove("oculto");
+    return false;
+}
+
+function calcularSaldo(nick,abates,primeiro){
+    if(!nick){alert("Informe o nick!");return;}
+    const valor = abates * VALOR_ABATE + (primeiro ? PREMIO_PRIMEIRO : 0);
+    const existente = placar.find(p=>p.nick.toLowerCase()===nick.toLowerCase());
+    if(existente){
+        existente.partidas++; existente.abates += abates; existente.saldo += valor;
+    }else{
+        placar.push({nick, partidas:1, abates, saldo:valor});
+    }
+    salvarDados(); atualizarPlacar();
+    alert("✅ Resultado salvo!");
+}
+
+function salvarResultado(){
+    calcularSaldo(
+        document.getElementById("nickResultado").value.trim(),
+        Number(document.getElementById("abatesResultado").value)||0,
+        document.getElementById("primeiroLugar").checked
+    );
+}
+
+function salvarResultado2(){
+    calcularSaldo(
+        document.getElementById("nickResultado2").value.trim(),
+        Number(document.getElementById("abatesResultado2").value)||0,
+        document.getElementById("primeiroLugar2").checked
+    );
+}
+
+function salvarConfig(){
+    const pix = document.getElementById("chavePixAdmin").value.trim();
+    const wpp = document.getElementById("whatsappAdmin").value.trim();
+    const link = document.getElementById("linkSalaAdmin").value.trim();
+    document.getElementById("chavePix").textContent = pix;
+    document.getElementById("linkWhatsapp").href = `https://wa.me/${wpp}`;
+    document.getElementById("linkSala").href = link;
+    document.getElementById("chavePixAdmin2").value = pix;
+    document.getElementById("whatsappAdmin2").value = wpp;
+    document.getElementById("linkSalaAdmin2").value = link;
+    alert("✅ Configurações salvas!");
+}
+
+function limparInscritos(){
+    if(confirm("🗑️ Apagar todas as inscrições?")){inscritos=[];salvarDados();atualizarTela();}
+}
+
+function zerarPlacar(){
+    if(confirm("❌ Zerar todo o placar?")){placar=[];salvarDados();atualizarPlacar();}
+}
+
+atualizarTela();
+</script>
+</body>
+</html>
