@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRAWL DIARY</title>
+    <meta property="og:title" content="BRAWL DIARY - Competição">
+    <meta property="og:description" content="Inscrições e resultados das competições">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+    <style>
+        * {margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI', Roboto, sans-serif;}
+        body {background:#12121F;color:#E2E2F0;min-height:100vh;padding:15px;}
+        .container {max-width:550px;margin:0 auto;}
+        header {background:linear-gradient(90deg,#2A1B4E,#1A2B5C);padding:1.2rem;text-align:center;border-radius:12px;margin-bottom:1rem;}
+        header h1 {font-size:1.8rem;background:linear-gradient(90deg,#FF4EC0,#2E8CFF);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:0.3rem;}
+        section {background:#1E1E2F;border-radius:14px;padding:1.2rem;margin-bottom:1.2rem;border:1px solid #333355;}
+        h2 {font-size:1.25rem;color:#FFF;margin-bottom:1rem;text-align:center;}
+        .bloco-valor {background:#252538;border-radius:12px;padding:1rem;text-align:center;margin:1rem 0;border:1px solid #3A3A5C;}
+        .valor-grande {font-size:2rem;font-weight:bold;color:#7B61FF;}
+        .aviso-amarelo {background:linear-gradient(90deg,#3A3020,#2E2618);border:1px solid #887030;border-radius:12px;padding:1rem;margin:1rem 0;color:#FFD566;}
+        .bloco-premio {background:linear-gradient(135deg,#2A2040,#202A50);border:1px solid #554099;border-radius:12px;padding:1rem;margin:1rem 0;text-align:center;}
+        .vagas {display:flex;justify-content:space-around;background:#252538;border-radius:10px;padding:0.8rem;margin:1rem 0;flex-wrap:wrap;gap:0.5rem;}
+        input {width:100%;padding:0.9rem;margin:0.5rem 0;border:1px solid #444466;border-radius:10px;background:#252538;color:#FFF;font-size:1rem;}
+        input::placeholder {color:#8888AA;}
+        button {width:100%;padding:0.9rem;border:none;border-radius:10px;font-size:1rem;font-weight:bold;cursor:pointer;margin:0.5rem 0;}
+        .btn-principal {background:linear-gradient(90deg,#FF2EB6,#9D2EFF);color:#FFF;}
+        .btn-limpar {background:linear-gradient(90deg,#E53935,#B71C1C);color:#FFF;}
+        ul {list-style:none;margin-top:1rem;}
+        li {background:#252538;border-radius:8px;padding:0.8rem;margin:0.5rem 0;border:1px solid #3A3A5C;text-align:center;}
+        table {width:100%;border-collapse:collapse;margin-top:1rem;}
+        th,td {padding:0.7rem;text-align:left;border-bottom:1px solid #333355;}
+        th {background:#252538;color:#FFF;}
+        .acesso-admin {text-align:center;padding:0.8rem;margin-top:4rem;margin-bottom:1rem;background:transparent;border:none;opacity:0.7;}
+        .acesso-admin h3 {font-size:0.9rem;color:#AAA;font-weight:normal;margin-bottom:0.5rem;}
+        .acesso-admin input {max-width:180px;margin:0 auto;padding:0.5rem;font-size:0.9rem;}
+        .acesso-admin button {max-width:120px;margin:0.3rem auto;padding:0.5rem;font-size:0.9rem;}
+        .area-admin {border:2px solid #554099;background:#1A1A2E;margin-top:1.5rem;padding:1.2rem;border-radius:12px;}
+        .interruptor {display:flex;justify-content:space-between;align-items:center;background:#252538;padding:0.8rem;border-radius:8px;margin:0.8rem 0;}
+        .switch {position:relative;display:inline-block;width:48px;height:24px;}
+        .switch input {opacity:0;width:0;height:0;}
+        .slider {position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:#444466;border-radius:24px;transition:0.3s;}
+        .slider:before {position:absolute;content:"";height:18px;width:18px;left:3px;bottom:3px;background:#FFF;border-radius:50%;transition:0.3s;}
+        input:checked + .slider {background:#25D366;}
+        input:checked + .slider:before {transform:translateX(24px);}
+        .oculto {display:none !important;}
+        .mensagem-sucesso {text-align:center;padding:2rem 1rem;background:#202A40;border:1px solid #4CD9B0;border-radius:12px;margin:1rem 0;}
+        .mensagem-sucesso h3 {color:#4CD9B0;font-size:1.3rem;margin-bottom:0.5rem;}
+        .espaco-link-sala {margin:2rem 0;padding:1.2rem;background:#1E1E2F;border-radius:12px;border:1px solid #00E676;text-align:center;}
+        footer {text-align:center;padding:1rem;color:#555577;font-size:0.75rem;margin-top:1rem;}
+    </style>
+</head>
+<body>
+
+    <div id="telaFechada" class="container">
+        <div style="text-align:center;padding:3rem 1.5rem;background:#1E1E2F;border-radius:14px;margin:2rem auto;border:1px solid #FF7090;">
+            <h2 style="color:#FF7090;">🚫 Inscrições Fechadas</h2>
+            <p style="margin-top:1rem;">As inscrições estão temporariamente encerradas. Volte mais tarde!</p>
+        </div>
+        <div class="acesso-admin">
+            <h3>🔑 Acesso Administrativo</h3>
+            <input type="password" id="senhaAdmin" placeholder="Digite a senha">
+            <button type="button" id="btnAcessar">Entrar</button>
+        </div>
+        <div id="painelAdmin" class="area-admin oculto">
+            <h2>🔐 Área do Administrador</h2>
+            <p style="text-align:center;color:#FFD566;margin-bottom:1rem;">Controle completo</p>
+            <div class="interruptor">
+                <span>Status do Sistema: <strong id="textoStatus">DESATIVADO</strong></span>
+                <label class="switch"><input type="checkbox" id="chkStatus"><span class="slider"></span></label>
+            </div>
+            <input type="text" id="campoLinkSala" placeholder="Link da sala">
+            <input type="text" id="campoPix" value="85987730499" placeholder="Chave Pix">
+            <input type="text" id="campoWpp" placeholder="Link WhatsApp">
+            <button type="button" id="btnEnviarNuvem" class="btn-principal">☁️ Enviar para nuvem</button>
+            <p id="avisoEnvio" style="text-align:center; margin:0.5rem 0; color:#4CD9B0; font-size:0.9rem;"></p>
+            <button type="button" id="btnLimpar" class="btn-limpar">🗑️ Limpar Inscrições</button>
+            <button type="button" id="btnZerar" class="btn-limpar">❌ Zerar Placar</button>
+            <button type="button" id="btnSair" class="btn-limpar">🔒 Sair</button>
+        </div>
+    </div>
+
+    <div id="telaAberta" class="container oculto">
+        <header>
+            <h1>📒 BRAWL DIARY</h1>
+            <p>Competição • Inscrições e Resultados</p>
+        </header>
+        <section>
+            <h2>🎯 Regras e Valores</h2>
+            <div class="bloco-valor"><p>Taxa de Inscrição</p><div class="valor-grande">R$ 4,00</div></div>
+            <div class="aviso-amarelo">⚠️ Após o pagamento, aguarde liberação do administrador.</div>
+            <div class="bloco-premio"><h3>Premiação</h3><p>🥇 1º Lugar: R$ 10,00</p><p>⚔️ Por abate: R$ 1,70</p></div>
+            <div class="vagas"><span>Total: 9 vagas</span><span id="vagasOcupadas">✅ Inscritos: 0</span><span id="vagasRestantes">🔄 Livres: 9</span></div>
+            <h3>📋 Lista de Inscritos</h3>
+            <ul id="listaNicks"></ul>
+        </section>
+        <section id="secaoCadastro">
+            <h2>📋 Fazer Inscrição</h2>
+            <form id="formCadastro">
+                <input type="text" id="nome" required placeholder="Nome completo">
+                <input type="tel" id="telefone" required placeholder="Seu telefone">
+                <input type="text" id="nick" required placeholder="Nick no Brawl Stars">
+                <button type="submit" class="btn-principal">✅ Confirmar Inscrição</button>
+            </form>
+        </section>
+        <div id="confirmado" class="oculto">
+            <div class="mensagem-sucesso"><h3>✅ Inscrição realizada!</h3><p>Envie o comprovante para liberação.</p></div>
+            <h3 style="text-align:center;margin:1.5rem 0 0.5rem;color:#4CD9B0;">💳 Pagamento Pix</h3>
+            <div class="bloco-valor" id="exibePix">85987730499</div>
+            <a id="linkWpp" href="#" target="_blank"><button class="btn-principal">💬 Enviar Comprovante</button></a>
+            <div id="aguardando" style="margin-top:1.5rem;text-align:center;color:#FFD566;">⏳ Aguardando liberação do administrador...</div>
+            <div id="acessoLiberado" class="espaco-link-sala oculto">
+                <h3 style="color:#00E676;margin-bottom:1rem;">🔓 Acesso Liberado!</h3>
+                <a id="linkSalaAcesso" href="#" target="_blank"><button class="btn-principal">🚪 Entrar na Sala</button></a>
+            </div>
+        </div>
+        <section>
+            <h2>🏆 Placar Geral</h2>
+            <table id="tabelaPlacar">
+                <thead><tr><th>Posição</th><th>Nick</th><th>Partidas</th><th>Total (R$)</th></tr></thead>
+                <tbody></tbody>
+            </table>
+        </section>
+        <div class="acesso-admin">
+            <h3>🔑 Acesso Administrativo</h3>
+            <input type="password" id="senhaAdmin2" placeholder="Digite a senha">
+            <button type="button" id="btnAcessar2">Entrar</button>
+        </div>
+        <div id="painelAdmin2" class="area-admin oculto">
+            <h2>🔐 Área do Administrador</h2>
+            <p style="text-align:center;color:#FFD566;margin-bottom:1rem;">Controle completo</p>
+            <div class="interruptor">
+                <span>Status do Sistema: <strong id="textoStatus2">DESATIVADO</strong></span>
+                <label class="switch"><input type="checkbox" id="chkStatus2"><span class="slider"></span></label>
+            </div>
+            <input type="text" id="campoLinkSala2" placeholder="Link da sala">
+            <input type="text" id="campoPix2" value="85987730499" placeholder="Chave Pix">
+            <input type="text" id="campoWpp2" placeholder="Link WhatsApp">
+            <button type="button" id="btnEnviarNuvem2" class="btn-principal">☁️ Enviar para nuvem</button>
+            <p id="avisoEnvio2" style="text-align:center; margin:0.5rem 0; color:#4CD9B0; font-size:0.9rem;"></p>
+            <button type="button" id="btnLimpar2" class="btn-limpar">🗑️ Limpar Inscrições</button>
+            <button type="button" id="btnZerar2" class="btn-limpar">❌ Zerar Placar</button>
+            <button type="button" id="btnSair2" class="btn-limpar">🔒 Sair</button>
+        </div>
+        <footer>© 2026 BRAWL DIARY</footer>
+    </div>
+
+    <script>
+        const SENHA = "996616825";
+        const MAX_VAGAS = 9;
+
+        // ✅ BANCO LIBERADO SEM RESTRIÇÕES
+        const firebaseConfig = {
+            apiKey: "AIzaSyA8jKX7r0eG7P3mQ5sT9uV1W2xY3z4A5B6C7D8E9F0G1H2I3J4K5L6M7N8O9P0Q1R2S3T4U5V6W7X8Y9Z0",
+            authDomain: "brawl-diary-sync-v2.firebaseapp.com",
+            databaseURL: "https://brawl-diary-sync-v2-default-rtdb.firebaseio.com",
+            projectId: "brawl-diary-sync-v2",
+            storageBucket: "brawl-diary-sync-v2.appspot.com",
+            messagingSenderId: "123456789012",
+            appId: "1:123456789012:web:abcdef1234567890abcdef"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+        const refDados = db.ref("configuracao_geral");
+
+        let sistemaAtivo = false;
+        let linkSala = "";
+        let linkWhatsapp = "";
+        let chavePix = "85987730499";
+
+        // ✅ Atualiza AUTOMATICAMENTE em todos os aparelhos
+        refDados.on("value", (snap) => {
+            const dados = snap.val() || {};
+            sistemaAtivo = dados.sistemaAtivo ?? false;
+            linkSala = dados.linkSala ?? "";
+            linkWhatsapp = dados.linkWhatsapp ?? "";
+            chavePix = dados.chavePix ?? "85987730499";
+            atualizarTela();
+        });
+
+        function atualizarTela() {
+            if (sistemaAtivo === true) {
+                document.getElementById("telaFechada").classList.add("oculto");
+                document.getElementById("telaAberta").classList.remove("oculto");
+                document.getElementById("textoStatus").textContent = "ATIVADO";
+                document.getElementById("textoStatus").style.color = "#25D366";
+                document.getElementById("textoStatus2").textContent = "ATIVADO";
+                document.getElementById("textoStatus2").style.color = "#25D366";
+                document.getElementById("chkStatus").checked = true;
+                document.getElementById("chkStatus2").checked = true;
+            } else {
+                document.getElementById("telaFechada").classList.remove("oculto");
+                document.getElementById("telaAberta").classList.add("oculto");
+                document.getElementById("textoStatus").textContent = "DESATIVADO";
+                document.getElementById("textoStatus").style.color = "#FF7090";
+                document.getElementById("textoStatus2").textContent = "DESATIVADO";
+                document.getElementById("textoStatus2").style.color = "#FF7090";
+                document.getElementById("chkStatus").checked = false;
+                document.getElementById("chkStatus2").checked = false;
+            }
+
+            document.getElementById("exibePix").textContent = chavePix;
+            document.getElementById("linkWpp").href = linkWhatsapp || "#";
+            document.getElementById("campoPix").value = chavePix;
+            document.getElementById("campoPix2").value = chavePix;
+            document.getElementById("campoWpp").value = linkWhatsapp;
+            document.getElementById("campoWpp2").value = linkWhatsapp;
+            document.getElementById("campoLinkSala").value = linkSala;
+            document.getElementById("campoLinkSala2").value = linkSala;
+        }
+
+        // ✅ Função de envio com confirmação visual
+        function salvarNaNuvem() {
+            sistemaAtivo = document.getElementById("chkStatus").checked;
+            linkSala = document.getElementById("campoLinkSala").value.trim();
+            linkWhatsapp = document.getElementById("campoWpp").value.trim();
+            chavePix = document.getElementById("campoPix").value.trim();
+
+            refDados.set({
+                sistemaAtivo: sistemaAtivo,
+                linkSala: linkSala,
+                linkWhatsapp: linkWhatsapp,
+                chavePix: chavePix,
+                ultimaAtualizacao: new Date().toLocaleString("pt-BR")
+            })
+            .then(() => {
+                document.getElementById("avisoEnvio").textContent = "✅ Enviado com sucesso! Já está visível em todos os celulares.";
+                setTimeout(() => document.getElementById("avisoEnvio").textContent = "", 4000);
+            })
+            .catch(err => {
+                document.getElementById("avisoEnvio").textContent = "❌ Erro: " + err.message;
+                document.getElementById("avisoEnvio").style.color = "#FF7090";
+            });
+        }
+
+        // ✅ Outro painel também usa a mesma função
+        function salvarNaNuvem2() {
+            sistemaAtivo = document.getElementById("chkStatus2").checked;
+            linkSala = document.getElementById("campoLinkSala2").value.trim();
+            linkWhatsapp = document.getElementById("campoWpp2").value.trim();
+            chavePix = document.getElementById("campoPix2").value.trim();
+
+            refDados.set({
+                sistemaAtivo: sistemaAtivo,
+                linkSala: linkSala,
+                linkWhatsapp: linkWhatsapp,
+                chavePix: chavePix,
+                ultimaAtualizacao: new Date().toLocaleString("pt-BR")
+            })
+            .then(() => {
+                document.getElementById("avisoEnvio2").textContent = "✅ Enviado com sucesso! Já está visível em todos os celulares.";
+                setTimeout(() => document.getElementById("avisoEnvio2").textContent = "", 4000);
+            })
+            .catch(err => {
+                document.getElementById("avisoEnvio2").textContent = "❌ Erro: " + err.message;
+                document.getElementById("avisoEnvio2").style.color = "#FF7090";
+            });
+        }
+
+        // Ações dos botões
+        document.getElementById("chkStatus").addEventListener("change", salvarNaNuvem);
+        document.getElementById("chkStatus2").addEventListener("change", salvarNaNuvem2);
+        document.getElementById("btnEnviarNuvem").addEventListener("click", salvarNaNuvem);
+        document.getElementById("btnEnviarNuvem2").addEventListener("click", salvarNaNuvem2);
+
+        function abrirAdmin() {
+            if (document.getElementById("senhaAdmin").value.trim() === SENHA) {
+                document.getElementById("painelAdmin").classList.remove("oculto");
+                document.getElementById("senhaAdmin").value = "";
+            } else alert("Senha incorreta!");
+        }
+        function abrirAdmin2() {
+            if (document.getElementById("senhaAdmin2").value.trim() === SENHA) {
+                document.getElementById("painelAdmin2").classList.remove("oculto");
+                document.getElementById("senhaAdmin2").value = "";
+            } else alert("Senha incorreta!");
+        }
+
+        document.getElementById("btnAcessar").addEventListener("click", abrirAdmin);
+        document.getElementById("btnAcessar2").addEventListener("click", abrirAdmin2);
+        document.getElementById("btnSair").addEventListener("click", () => document.getElementById("painelAdmin").classList.add("oculto"));
+        document.getElementById("btnSair2").addEventListener("click", () => document.getElementById("painelAdmin2").classList.add("oculto"));
+    </script>
+</body>
+</html>
