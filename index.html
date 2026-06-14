@@ -9,7 +9,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: 'Segoe UI', Roboto, sans-serif;
         }
 
         body {
@@ -17,18 +17,19 @@
             color: #E2E2F0;
             line-height: 1.6;
             min-height: 100vh;
+            padding: 10px;
         }
 
         header {
             background: linear-gradient(90deg, #2A1B4E, #1A2B5C);
-            padding: 1.5rem;
+            padding: 1.2rem;
             text-align: center;
-            border-bottom: 1px solid #333355;
+            border-radius: 12px;
+            margin-bottom: 1rem;
         }
 
         header h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
+            font-size: 1.8rem;
             background: linear-gradient(90deg, #FF4EC0, #2E8CFF);
             -webkit-background-clip: text;
             background-clip: text;
@@ -36,49 +37,39 @@
             margin-bottom: 0.3rem;
         }
 
-        header p {
-            font-size: 1rem;
-            color: #B0B0D0;
-            font-weight: 400;
-        }
-
         .container {
             max-width: 550px;
-            margin: 1.5rem auto;
-            padding: 0 1rem;
+            margin: 0 auto;
         }
 
         section {
             background-color: #1E1E2F;
             border-radius: 14px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
+            padding: 1.2rem;
+            margin-bottom: 1.2rem;
             border: 1px solid #333355;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
         }
 
         h2 {
-            font-size: 1.3rem;
-            font-weight: 600;
+            font-size: 1.25rem;
             color: #FFFFFF;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem;
             text-align: center;
         }
 
         .bloco-valor {
             background-color: #252538;
             border-radius: 12px;
-            padding: 1.2rem;
+            padding: 1rem;
             text-align: center;
             margin: 1rem 0;
             border: 1px solid #3A3A5C;
         }
 
         .valor-grande {
-            font-size: 2.5rem;
-            font-weight: 800;
+            font-size: 2rem;
+            font-weight: bold;
             color: #7B61FF;
-            letter-spacing: 1px;
         }
 
         .aviso-amarelo {
@@ -88,122 +79,51 @@
             padding: 1rem;
             margin: 1rem 0;
             color: #FFD566;
-            font-weight: 500;
         }
 
         .bloco-premio {
             background: linear-gradient(135deg, #2A2040, #202A50);
             border: 1px solid #554099;
             border-radius: 12px;
-            padding: 1.2rem;
+            padding: 1rem;
             margin: 1rem 0;
             text-align: center;
         }
 
-        .bloco-premio h3 {
-            color: #FFD700;
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin: 0.5rem 0;
-        }
-
-        .bloco-aviso {
-            background-color: #252538;
-            border-radius: 12px;
-            padding: 1rem;
-            margin: 1rem 0;
-            border: 1px solid #3A3A5C;
-        }
-
-        .bloco-aviso p {
-            color: #C0C0E0;
-            font-size: 0.95rem;
-        }
-
-        button {
-            width: 100%;
-            padding: 1rem;
-            border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .btn-principal {
-            background: linear-gradient(90deg, #FF2EB6, #9D2EFF);
-            color: #FFFFFF;
-        }
-
-        .btn-principal:hover {
-            background: linear-gradient(90deg, #FF4EC0, #B040FF);
-            box-shadow: 0 0 12px rgba(255, 46, 182, 0.4);
-        }
-
-        .btn-whatsapp {
-            background-color: #25D366;
-            color: #FFFFFF;
-            margin-top: 0.5rem;
-        }
-
-        .btn-whatsapp:hover {
-            background-color: #20BB58;
-            box-shadow: 0 0 12px rgba(37, 211, 102, 0.3);
-        }
-
-        .btn-limpar {
-            background: linear-gradient(90deg, #E53935, #B71C1C);
-            color: #FFFFFF;
-            margin-top: 1rem;
-        }
-
-        .btn-limpar:hover {
-            background: linear-gradient(90deg, #EF5350, #C62828);
-            box-shadow: 0 0 12px rgba(229, 57, 53, 0.4);
-        }
-
-        .btn-acessar-sala {
-            background: linear-gradient(90deg, #00C851, #007E33);
-            color: #FFFFFF;
-            margin-top: 1rem;
-            font-size: 1.1rem;
-        }
-
-        .btn-acessar-sala:hover {
-            box-shadow: 0 0 12px rgba(0, 200, 81, 0.4);
-        }
-
-        .btn-confirmar {
-            background: linear-gradient(90deg, #FF9800, #F57C00);
-            color: #FFFFFF;
-            margin-top: 1rem;
-        }
-
-        .btn-confirmar:hover {
-            box-shadow: 0 0 12px rgba(255, 152, 0, 0.4);
-        }
-
         input {
             width: 100%;
-            padding: 1rem;
+            padding: 0.9rem;
             margin: 0.5rem 0;
             border: 1px solid #444466;
             border-radius: 10px;
             background-color: #252538;
             color: #FFFFFF;
             font-size: 1rem;
-            font-weight: 400;
         }
 
         input::placeholder {
             color: #8888AA;
         }
 
-        input:focus {
-            outline: none;
-            border-color: #7B61FF;
-            box-shadow: 0 0 8px rgba(123, 97, 255, 0.3);
+        button {
+            width: 100%;
+            padding: 0.9rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 0.5rem 0;
+        }
+
+        .btn-principal {
+            background: linear-gradient(90deg, #FF2EB6, #9D2EFF);
+            color: white;
+        }
+
+        .btn-limpar {
+            background: linear-gradient(90deg, #E53935, #B71C1C);
+            color: white;
         }
 
         .vagas {
@@ -213,7 +133,6 @@
             border-radius: 10px;
             padding: 0.8rem;
             margin: 1rem 0;
-            font-weight: 500;
             flex-wrap: wrap;
             gap: 0.5rem;
         }
@@ -228,8 +147,20 @@
             padding: 0.8rem;
             margin: 0.5rem 0;
             border: 1px solid #3A3A5C;
-            font-weight: 500;
+        }
+
+        .acesso-admin {
             text-align: center;
+            padding: 1.2rem;
+            background-color: #252538;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            border: 1px dashed #7B61FF;
+        }
+
+        .acesso-admin h3 {
+            color: #7B61FF;
+            margin-bottom: 1rem;
         }
 
         .area-admin {
@@ -237,14 +168,35 @@
             background-color: #1A1A2E;
         }
 
+        .oculto {
+            display: none !important;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th, td {
+            padding: 0.7rem;
+            text-align: left;
+            border-bottom: 1px solid #333355;
+        }
+
+        th {
+            background-color: #252538;
+            color: #FFFFFF;
+        }
+
         .interruptor {
             display: flex;
             justify-content: space-between;
             align-items: center;
             background-color: #252538;
-            padding: 0.6rem 0.8rem;
+            padding: 0.8rem;
             border-radius: 8px;
-            margin: 0.3rem 0;
+            margin: 0.8rem 0;
         }
 
         .switch {
@@ -279,7 +231,7 @@
             width: 16px;
             left: 3px;
             bottom: 3px;
-            background-color: #FFFFFF;
+            background-color: white;
             border-radius: 50%;
             transition: 0.3s;
         }
@@ -292,576 +244,259 @@
             transform: translateX(22px);
         }
 
-        .aviso-desativado {
-            text-align: center;
-            padding: 3rem 1.5rem;
-            font-size: 1.2rem;
-            color: #FF7090;
-            background-color: #1E1E2F;
-            border-radius: 14px;
-            margin: 2rem auto;
-            max-width: 500px;
-        }
-
-        .oculto {
-            display: none !important;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1rem;
-            font-size: 0.9rem;
-        }
-
-        th {
-            background-color: #252538;
-            padding: 0.7rem;
-            text-align: left;
-            border-bottom: 1px solid #3A3A5C;
-            font-weight: 600;
-        }
-
-        td {
-            padding: 0.7rem;
-            border-bottom: 1px solid #333355;
-            background-color: #1E1E2F;
-        }
-
-        footer {
-            text-align: center;
-            padding: 1.5rem;
-            color: #8888AA;
-            font-size: 0.9rem;
-            margin-top: 1rem;
-        }
-
         .status-partida {
             padding: 0.8rem;
             border-radius: 8px;
             text-align: center;
-            font-weight: 600;
+            font-weight: bold;
             margin: 1rem 0;
         }
+
         .status-nao { background: #2E2618; border: 1px solid #887030; color: #FFD566; }
         .status-iniciada { background: #182E20; border: 1px solid #308850; color: #4CD9B0; }
 
-        /* Estilos para a senha */
-        .acesso-admin {
+        footer {
             text-align: center;
-            padding: 1.5rem;
-            background-color: #252538;
-            border-radius: 12px;
-            margin: 2rem 0;
-            border: 1px dashed #7B61FF;
-        }
-        .acesso-admin h3 {
-            color: #7B61FF;
-            margin-bottom: 1rem;
+            padding: 1rem;
+            color: #8888AA;
+            font-size: 0.9rem;
+            margin-top: 1rem;
         }
     </style>
 </head>
 <body>
 
-    <div id="telaDesativada" class="aviso-desativado oculto">
-        <h2>🚫 Sistema Temporariamente Indisponível</h2>
-        <p>As inscrições e atividades estão pausadas no momento.<br>Volte mais tarde!</p>
+    <!-- Tela de sistema desativado -->
+    <div id="telaDesativada" class="oculto">
+        <div style="text-align: center; padding: 3rem 1.5rem; background: #1E1E2F; border-radius: 14px; margin: 2rem auto; max-width: 550px; border: 1px solid #FF7090;">
+            <h2 style="color: #FF7090;">🚫 Inscrições Fechadas</h2>
+            <p style="margin-top: 1rem;">As inscrições estão temporariamente encerradas. Volte mais tarde!</p>
+        </div>
+
+        <!-- 📌 Acesso ao ADM SEMPRE visível, mesmo fechado -->
+        <div class="acesso-admin" style="max-width: 550px; margin: 2rem auto;">
+            <h3>🔑 Acesso Administrativo</h3>
+            <input type="password" id="senhaAdmin" placeholder="Digite a senha">
+            <button type="button" id="btnAcessarAdmin" class="btn-principal">🔓 Entrar</button>
+        </div>
     </div>
 
-    <div id="conteudoPrincipal">
+    <!-- Conteúdo principal (aparece quando ativado) -->
+    <div id="conteudoPrincipal" class="oculto">
         <header>
             <h1>📒 BRAWL DIARY</h1>
-            <p>Combate Solitário • Todos contra Todos</p>
+            <p>Competição • Inscrições e Resultados</p>
         </header>
 
         <div class="container">
             <section>
                 <h2>🎯 Regras e Valores</h2>
                 <div class="bloco-valor">
-                    <p>VALOR DA INSCRIÇÃO</p>
+                    <p>Taxa de Inscrição</p>
                     <div class="valor-grande">R$ 4,00</div>
                 </div>
 
                 <div class="aviso-amarelo">
-                    ⚠️ Faça o pagamento via Pix abaixo e aguarde o admin liberar o link da sala.
+                    ⚠️ Após o pagamento, aguarde a liberação do acesso à sala pelo administrador.
                 </div>
 
                 <div class="bloco-premio">
-                    <span style="font-size: 1.5rem;">🏆</span>
                     <h3>Premiação</h3>
-                    <p>🥇 1º Lugar: R$ 10,00<br>⚔️ Por cada abate: R$ 1,70</p>
-                </div>
-
-                <div class="bloco-aviso">
-                    <h4 style="color: #7B61FF; margin-bottom: 0.5rem;">💬 Avisar o admin</h4>
-                    <p>Pagou? Avise o admin pelo WhatsApp para liberar sua vaga mais rápido!</p>
+                    <p>🥇 1º Lugar: R$ 10,00</p>
+                    <p>⚔️ Por abate: R$ 1,70</p>
                 </div>
 
                 <div class="vagas">
-                    <div>Total: 10 vagas</div>
-                    <div id="vagasOcupadas">✅ Inscritos: 0</div>
-                    <div id="vagasRestantes">🔄 Restantes: 10</div>
+                    <span>Total: 10 vagas</span>
+                    <span id="vagasOcupadas">✅ Inscritos: 0</span>
+                    <span id="vagasRestantes">🔄 Livres: 10</span>
                 </div>
             </section>
 
             <section>
-                <h2>📋 Inscreva-se Aqui</h2>
+                <h2>📋 Fazer Inscrição</h2>
                 <form id="formInscricao">
                     <input type="text" id="nomeCompleto" required placeholder="Nome completo">
-                    <input type="tel" id="telefone" required placeholder="Número de telefone">
-                    <input type="text" id="nickJogo" required placeholder="Nickname no Brawl Stars">
+                    <input type="tel" id="telefone" required placeholder="Seu telefone">
+                    <input type="text" id="nickJogo" required placeholder="Nick no Brawl Stars">
                     <button type="submit" id="btnInscrever" class="btn-principal">✅ Confirmar Inscrição</button>
                 </form>
 
-                <div id="areaUsuarioInscrito" class="oculto">
-                    <div class="bloco-aviso" style="border-color: #4CD9B0; background: #202A40;">
-                        <h3 style="color: #4CD9B0; text-align: center;">✅ Inscrição Confirmada</h3>
-                        <p style="text-align: center;">Aguarde a liberação do acesso à sala após confirmação do pagamento.</p>
+                <div id="areaInscrito" class="oculto">
+                    <div style="background: #202A40; border: 1px solid #4CD9B0; border-radius: 12px; padding: 1rem; margin: 1rem 0; text-align: center;">
+                        <h3 style="color: #4CD9B0;">✅ Inscrição Concluída</h3>
+                        <p>Envie o comprovante para confirmar sua vaga.</p>
                     </div>
-
-                    <h3 style="text-align: center; margin: 1.5rem 0 0.5rem; color: #4CD9B0;">💳 Chave Pix para Pagamento</h3>
-                    <div class="bloco-valor" id="chavePixExibida">85987730499</div>
-
-                    <a id="linkWhatsapp" href="https://wa.me/5585987730499" target="_blank">
-                        <button type="button" class="btn-whatsapp">💬 Enviar Comprovante ao WhatsApp</button>
+                    <h3 style="text-align: center; margin: 1.5rem 0 0.5rem; color: #4CD9B0;">💳 Pagamento</h3>
+                    <div class="bloco-valor" id="chavePix">85987730499</div>
+                    <a id="linkWhatsapp" href="https://wa.me/5585996616825" target="_blank">
+                        <button type="button" class="btn-principal">💬 Enviar Comprovante</button>
                     </a>
-
-                    <div id="areaLinkSala" class="oculto">
-                        <h3 style="margin-top: 1.5rem; color: #00E676; text-align: center;">🔓 Sala Liberada!</h3>
-                        <a id="botaoAcessarSala" href="#" target="_blank">
-                            <button type="button" class="btn-acessar-sala">🚪 Acessar Sala Agora</button>
+                    <div id="areaLiberada" class="oculto">
+                        <h3 style="margin-top: 1.5rem; color: #00E676; text-align: center;">🔓 Acesso Liberado!</h3>
+                        <a id="linkSala" href="#" target="_blank">
+                            <button type="button" class="btn-principal">🚪 Entrar na Sala</button>
                         </a>
                     </div>
-
-                    <div id="avisoSalaBloqueada" class="bloco-aviso" style="margin-top: 1rem; text-align: center; color: #8888AA;">
-                        🔒 Link da sala ainda não liberado<br>
-                        <small>Você verá o botão quando o admin liberar seu acesso.</small>
-                    </div>
                 </div>
-
-                <h3 style="margin-top: 2rem; text-align: center; color: #C0C0E0;">📜 Lista de Inscritos</h3>
-                <ul id="listaJogadoresPublica"></ul>
             </section>
 
             <section>
-                <h2>🏆 PLACAR GERAL</h2>
-                <table id="tabelaPlacarPublica">
+                <h2>🏆 Placar Geral</h2>
+                <table id="tabelaPlacar">
                     <thead>
                         <tr>
                             <th>Posição</th>
                             <th>Nick</th>
-                            <th>Partidas Jogadas</th>
-                            <th>Total Abates</th>
-                            <th>Saldo Total</th>
+                            <th>Partidas</th>
+                            <th>Abates</th>
+                            <th>Total (R$)</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
                 </table>
             </section>
 
-            <!-- Área de acesso com senha -->
+            <!-- Acesso ao ADM também aparece aqui quando ativado -->
             <div class="acesso-admin">
                 <h3>🔑 Acesso Administrativo</h3>
-                <input type="password" id="senhaAdmin" placeholder="Digite a senha para acessar">
-                <button type="button" id="btnAcessarAdmin" class="btn-principal">🔓 Entrar</button>
+                <input type="password" id="senhaAdmin2" placeholder="Digite a senha">
+                <button type="button" id="btnAcessarAdmin2" class="btn-principal">🔓 Entrar</button>
             </div>
 
-            <!-- Área do ADM, só aparece com senha correta -->
-            <section id="areaAdminCompleta" class="area-admin oculto">
-                <h2>🔐 Área do Organizador</h2>
-                <p style="text-align: center; color: #FFD566; margin-bottom: 1rem;">Essa área é restrita ao administrador</p>
+            <section id="areaAdmin" class="area-admin oculto">
+                <h2>🔐 Área do Administrador</h2>
+                <p style="text-align: center; color: #FFD566; margin-bottom: 1rem;">Controle completo do sistema</p>
 
                 <div class="interruptor">
-                    <span>Status do Sistema: <strong id="statusSistema" style="color: #FF7090;">DESATIVADO</strong></span>
+                    <span>Status do Sistema: <strong id="statusSistema">DESATIVADO</strong></span>
                     <label class="switch">
-                        <input type="checkbox" id="interruptorSistema">
+                        <input type="checkbox" id="ligarSistema">
                         <span class="slider"></span>
                     </label>
                 </div>
 
-                <input type="url" id="linkSalaGeral" placeholder="Cole aqui o link da sala (válido para todos)" style="margin: 1rem 0;">
+                <input type="url" id="linkSalaAdmin" placeholder="Link da sala">
+                <input type="text" id="chavePixAdmin" value="85987730499" placeholder="Chave Pix">
+                <input type="tel" id="numeroWhatsappAdmin" value="85996616825" placeholder="Número WhatsApp">
 
-                <form id="formAdmin">
-                    <input type="text" id="chavePixAdmin" value="85987730499" placeholder="Chave Pix">
-                    <input type="url" id="linkWhatsappAdmin" value="https://wa.me/5585987730499" placeholder="Link WhatsApp">
-                    <button type="submit" class="btn-principal">💾 Salvar Configurações</button>
-                </form>
+                <button type="button" id="salvarConfiguracoes" class="btn-principal">💾 Salvar Alterações</button>
+                <button type="button" id="limparInscritos" class="btn-limpar">🗑️ Limpar Apenas Inscrições</button>
+                <button type="button" id="zerarPlacar" class="btn-limpar">❌ Zerar Somente o Placar</button>
+                <button type="button" id="sairAdmin" class="btn-limpar">🔒 Sair</button>
 
-                <button type="button" id="btnLimparInscritos" class="btn-limpar">🗑️ Remover todos os inscritos</button>
-
-                <h3 style="margin-top: 1.5rem; color: #FFD566;">📋 Gerenciar Acessos</h3>
-                <p style="font-size: 0.9rem; color: #B0B0D0; margin-bottom: 0.8rem;">Ligue o interruptor para liberar o acesso de cada jogador</p>
-
-                <table id="tabelaGerenciarAcessos">
+                <h3 style="margin-top: 1.5rem; color: #FFD566;">📋 Gerenciar Inscritos</h3>
+                <table id="tabelaInscritos">
                     <thead>
                         <tr>
+                            <th>Nome</th>
                             <th>Nick</th>
-                            <th>Status</th>
+                            <th>Telefone</th>
                             <th>Liberar</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
                 </table>
 
-                <h3 style="margin-top: 1.5rem; color: #FFD566;">📋 Dados Completos</h3>
-                <table id="tabelaDadosPrivados">
-                    <thead>
-                        <tr>
-                            <th>Nome</th>
-                            <th>Telefone</th>
-                            <th>Nick</th>
-                            <th>Data</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-
-                <h3 style="margin-top: 1.5rem; color: #FFD566;">🎮 Controle da Partida</h3>
-                <div id="statusPartidaAtual" class="status-partida status-nao">
-                    Partida ainda não iniciada
-                </div>
-                <button type="button" id="btnConfirmarInicio" class="btn-confirmar">✅ Confirmar que a partida começou</button>
-
-                <button type="button" id="btnSairAdmin" class="btn-limpar" style="margin-top: 1.5rem;">🔒 Sair da Área Administrativa</button>
-            </section>
-
-            <section>
-                <h2>📝 Registrar Resultado da Partida</h2>
-                <form id="formRegistro">
-                    <input type="date" id="data" required>
-                    <input type="text" id="mapa" required placeholder="Mapa da partida">
-                    <input type="tel" id="primeiroLugar" required placeholder="Telefone do 1º lugar">
-
-                    <h4 style="margin: 1rem 0 0.5rem; color: #C0C0E0;">Jogadores e abates:</h4>
-                    <div id="camposJogadores">
-                        <input type="tel" class="telefoneJogador" placeholder="Número do telefone" required>
-                        <input type="number" class="abates" min="0" placeholder="Quantidade de abates" required>
-                    </div>
-                    <button type="button" id="addJogador" class="btn-principal" style="max-width: 250px; margin: 0.5rem 0;">+ Adicionar jogador</button>
-
-                    <button type="submit" class="btn-principal" style="margin-top: 1rem;">💾 Salvar Resultado</button>
-                </form>
+                <h3 style="margin-top: 1.5rem; color: #FFD566;">📝 Registrar Resultado</h3>
+                <input type="text" id="nickResultado" placeholder="Nick do jogador">
+                <input type="number" id="abatesResultado" min="0" placeholder="Quantidade de abates">
+                <label style="display: flex; align-items: center; gap: 8px; margin: 0.5rem 0;">
+                    <input type="checkbox" id="primeiroLugar">
+                    <span>Foi o 1º lugar (+ R$ 10,00)</span>
+                </label>
+                <button type="button" id="adicionarResultado" class="btn-principal">✅ Salvar Resultado</button>
             </section>
         </div>
 
-        <footer>
-            © 2026 BRAWL DIARY | Sistema de Torneios
-        </footer>
+        <footer>© 2026 BRAWL DIARY | Sistema de Competições</footer>
     </div>
 
     <script>
-        // 🔑 SENHA DE ACESSO - altere aqui se precisar mudar depois
+        // Configurações
         const SENHA_ADMIN = "996616825";
-
-        const LIMITE_JOGADORES = 10;
-        const VALOR_ENTRADA = 4.00;
+        const LIMITE_VAGAS = 10;
+        const VALOR_ABATE = 1.70;
         const PREMIO_PRIMEIRO = 10.00;
-        const VALOR_POR_ABATE = 1.70;
 
-        let inscritos = JSON.parse(localStorage.getItem('brawl_inscritos')) || [];
-        let partidas = JSON.parse(localStorage.getItem('brawl_partidas')) || [];
-        let config = JSON.parse(localStorage.getItem('brawl_config')) || { 
-            chavePix: '85987730499', 
-            linkWhatsapp: 'https://wa.me/5585987730499', 
-            sistemaAtivo: false,
-            linkSala: '',
-            partidaIniciada: false
-        };
+        let inscritos = JSON.parse(localStorage.getItem("inscritos")) || [];
+        let placar = JSON.parse(localStorage.getItem("placar")) || [];
+        let sistemaAtivo = JSON.parse(localStorage.getItem("sistemaAtivo")) || false;
 
-        const telaDesativadaEl = document.getElementById('telaDesativada');
-        const conteudoPrincipalEl = document.getElementById('conteudoPrincipal');
-        const interruptorSistemaEl = document.getElementById('interruptorSistema');
-        const statusSistemaEl = document.getElementById('statusSistema');
-        const vagasOcupadasEl = document.getElementById('vagasOcupadas');
-        const vagasRestantesEl = document.getElementById('vagasRestantes');
-        const listaPublicaEl = document.getElementById('listaJogadoresPublica');
-        const tabelaPrivadaEl = document.getElementById('tabelaDadosPrivados').querySelector('tbody');
-        const tabelaAcessosEl = document.getElementById('tabelaGerenciarAcessos').querySelector('tbody');
-        const tabelaPlacarEl = document.getElementById('tabelaPlacarPublica').querySelector('tbody');
-        const formInscricao = document.getElementById('formInscricao');
-        const btnInscrever = document.getElementById('btnInscrever');
-        const formAdmin = document.getElementById('formAdmin');
-        const btnLimparInscritos = document.getElementById('btnLimparInscritos');
-        const chavePixUsuarioEl = document.getElementById('chavePixExibida');
-         const areaUsuarioInscritoEl = document.getElementById('areaUsuarioInscrito');
-         const linkWhatsappEl = document.getElementById('linkWhatsapp');
-         const linkSalaGeralEl = document.getElementById('linkSalaGeral');
-         const areaLinkSalaEl = document.getElementById('areaLinkSala');
-         const avisoSalaBloqueadaEl = document.getElementById('avisoSalaBloqueada');
-         const botaoAcessarSalaEl = document.getElementById('botaoAcessarSala');
-         const statusPartidaEl = document.getElementById('statusPartidaAtual');
-         const btnConfirmarInicioEl = document.getElementById('btnConfirmarInicio');
-         const formRegistro = document.getElementById('formRegistro');
-         const camposJogadoresEl = document.getElementById('camposJogadores');
-         const btnAddJogador = document.getElementById('addJogador');
-         // Elementos da senha
-         const senhaAdminEl = document.getElementById('senhaAdmin');
-         const btnAcessarAdminEl = document.getElementById('btnAcessarAdmin');
-         const areaAdminCompletaEl = document.getElementById('areaAdminCompleta');
-         const btnSairAdminEl = document.getElementById('btnSairAdmin');
-         function salvarDados() {
-             localStorage.setItem('brawl_inscritos', JSON.stringify(inscritos));
-             localStorage.setItem('brawl_partidas', JSON.stringify(partidas));
-             localStorage.setItem('brawl_config', JSON.stringify(config));
-         }
-         function atualizarStatusSistema() {
-             if (config.sistemaAtivo) {
-                 telaDesativadaEl.classList.add('oculto');
-                 conteudoPrincipalEl.classList.remove('oculto');
-                 statusSistemaEl.textContent = 'ATIVADO';
-                 statusSistemaEl.style.color = '#25D366';
-                 interruptorSistemaEl.checked = true;
-             } else {
-                 telaDesativadaEl.classList.remove('oculto');
-                 conteudoPrincipalEl.classList.add('oculto');
-                 statusSistemaEl.textContent = 'DESATIVADO';
-                 statusSistemaEl.style.color = '#FF7090';
-                 interruptorSistemaEl.checked = false;
-             }
-         }
-         interruptorSistemaEl.addEventListener('change', () => {
-             config.sistemaAtivo = interruptorSistemaEl.checked;
-             salvarDados();
-             atualizarStatusSistema();
-         });
-         function atualizarStatusPartida() {
-             if (config.partidaIniciada) {
-                 statusPartidaEl.textContent = '✅ Partida confirmada como iniciada';
-                 statusPartidaEl.className = 'status-partida status-iniciada';
-                 btnConfirmarInicioEl.textContent = '🔄 Reiniciar controle para nova partida';
-             } else {
-                 statusPartidaEl.textContent = '⏳ Partida ainda não iniciada';
-                 statusPartidaEl.className = 'status-partida status-nao';
-                 btnConfirmarInicioEl.textContent = '✅ Confirmar que a partida começou';
-             }
-         }
-         btnConfirmarInicioEl.addEventListener('click', () => {
-             config.partidaIniciada = !config.partidaIniciada;
-             salvarDados();
-             atualizarStatusPartida();
-             alert(config.partidaIniciada ? '✅ Partida iniciada confirmada!' : '🔄 Pronto para nova partida!');
-         });
-         function atualizarVagas() {
-             vagasOcupadasEl.textContent = `✅ Inscritos: ${inscritos.length}`;
-             vagasRestantesEl.textContent = `🔄 Restantes: ${LIMITE_JOGADORES - inscritos.length}`;
-             btnInscrever.disabled = inscritos.length >= LIMITE_JOGADORES;
-         }
-         function atualizarListas() {
-             listaPublicaEl.innerHTML = '';
-             if (inscritos.length === 0) {
-                 listaPublicaEl.innerHTML = '<li style="background:none; color:#8888AA;">Ninguém inscrito ainda</li>';
-             } else {
-                 inscritos.forEach(j => {
-                     const li = document.createElement('li');
-                     li.textContent = j.nick;
-                     listaPublicaEl.appendChild(li);
-                 });
-             }
-             tabelaPrivadaEl.innerHTML = '';
-             inscritos.forEach(j => {
-                 const linha = document.createElement('tr');
-                 linha.innerHTML = `<td>${j.nome}</td><td>${j.telefone}</td><td>${j.nick}</td><td>${j.data}</td>`;
-                 tabelaPrivadaEl.appendChild(linha);
-             });
-             tabelaAcessosEl.innerHTML = '';
-             inscritos.forEach((j, idx) => {
-                 const liberado = j.liberado || false;
-                 const linha = document.createElement('tr');
-                 linha.innerHTML = `
-                     <td>${j.nick}</td>
-                     <td style="color: ${liberado ? '#25D366' : '#FF7090'};">${liberado ? 'LIBERADO' : 'BLOQUEADO'}</td>
-                     <td>
-                         <label class="switch">
-                             <input type="checkbox" onchange="alterarLiberacao(${idx}, this.checked)" ${liberado ? 'checked' : ''}>
-                             <span class="slider"></span>
-                         </label>
-                     </td>
-                 `;
-                 tabelaAcessosEl.appendChild(linha);
-             });
-         }
-         window.alterarLiberacao = function(indice, estado) {
-             inscritos[indice].liberado = estado;
-             salvarDados();
-             atualizarListas();
-             verificarAcessoUsuario();
-         };
-         function verificarAcessoUsuario() {
-             if (inscritos.length === 0) return;
-             const usuarioAtual = inscritos[inscritos.length - 1];
-             linkSalaGeralEl.value = config.linkSala || '';
-             botaoAcessarSalaEl.href = config.linkSala;
-             if (usuarioAtual.liberado && config.linkSala) {
-                 areaLinkSalaEl.classList.remove('oculto');
-                 avisoSalaBloqueadaEl.classList.add('oculto');
-             } else {
-                 areaLinkSalaEl.classList.add('oculto');
-                 avisoSalaBloqueadaEl.classList.remove('oculto');
-             }
-         }
-         function atualizarPlacar() {
-             const dados = {};
-             inscritos.forEach(j => {
-                 dados[j.telefone] = {
-                     nick: j.nick,
-                     partidas: 0,
-                     abates: 0,
-                     valorAbates: 0,
-                     premios: 0,
-                     saldo: 0
-                 };
-             });
-             partidas.forEach(p => {
-                 if (!p.confirmada) return;
-                 if (dados[p.primeiroTelefone]) {
-                     dados[p.primeiroTelefone].premios += PREMIO_PRIMEIRO;
-                     dados[p.primeiroTelefone].saldo += PREMIO_PRIMEIRO;
-                 }
-                 p.jogadores.forEach(j => {
-                     if (!dados[j.telefone]) return;
-                     dados[j.telefone].partidas += 1;
-                     dados[j.telefone].abates += j.abates;
-                     const valor = j.abates * VALOR_POR_ABATE;
-                     dados[j.telefone].valorAbates += valor;
-                     dados[j.telefone].saldo += valor - VALOR_ENTRADA;
-                 });
-             });
-             const lista = Object.values(dados).sort((a, b) => b.saldo - a.saldo);
-             tabelaPlacarEl.innerHTML = '';
-             if (lista.length === 0) {
-                 tabelaPlacarEl.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#8888AA;">Nenhuma partida registrada ainda</td></tr>';
-                 return;
-             }
-             lista.forEach((jogador, pos) => {
-                 const linha = document.createElement('tr');
-                 linha.innerHTML = `
-                     <td>${pos + 1}º</td>
-                     <td><strong>${jogador.nick}</strong></td>
-                     <td>${jogador.partidas}</td>
-                     <td>${jogador.abates}</td>
-                     <td style="color: ${jogador.saldo >= 0 ? '#4CD9B0' : '#FF7090'};">R$ ${jogador.saldo.toFixed(2)}</td>
-                 `;
-                 tabelaPlacarEl.appendChild(linha);
-             });
-         }
-         function atualizarAreaPix() {
-             chavePixUsuarioEl.textContent = config.chavePix;
-             linkWhatsappEl.href = config.linkWhatsapp;
-         }
-         btnLimparInscritos.addEventListener('click', () => {
-             if (confirm('⚠️ Remover TODOS os inscritos? Ação irreversível!')) {
-                 inscritos = [];
-                 salvarDados();
-                 atualizarVagas();
-                 atualizarListas();
-                 atualizarPlacar();
-                 areaUsuarioInscritoEl.classList.add('oculto');
-                 formInscricao.classList.remove('oculto');
-                 alert('✅ Todos removidos!');
-             }
-         });
-         formAdmin.addEventListener('submit', e => {
-             e.preventDefault();
-             config.chavePix = document.getElementById('chavePixAdmin').value.trim();
-             config.linkWhatsapp = document.getElementById('linkWhatsappAdmin').value.trim();
-             config.linkSala = linkSalaGeralEl.value.trim();
-             salvarDados();
-             atualizarAreaPix();
-             verificarAcessoUsuario();
-             alert('✅ Configurações salvas!');
-         });
-         formInscricao.addEventListener('submit', e => {
-             e.preventDefault();
-             const nome = document.getElementById('nomeCompleto').value.trim();
-             const telefone = document.getElementById('telefone').value.trim().replace(/\D/g, '');
-             const nick = document.getElementById('nickJogo').value.trim();
-             if (!nome || !telefone || !nick) return;
-             if (inscritos.length >= LIMITE_JOGADORES) { alert('❌ Vagas esgotadas!'); return; }
-             if (inscritos.some(j => j.telefone === telefone)) { alert('⚠️ Esse telefone já está cadastrado!'); return; }
-             if (inscritos.some(j => j.nick.toLowerCase() === nick.toLowerCase())) { alert('⚠️ Nick já cadastrado!'); return; }
-             const novo = { nome, telefone, nick, data: new Date().toLocaleString('pt-BR'), liberado: false };
-             inscritos.push(novo);
-             salvarDados();
-             atualizarVagas();
-             atualizarListas();
-             atualizarAreaPix();
-             verificarAcessoUsuario();
-             atualizarPlacar();
-             formInscricao.classList.add('oculto');
-             areaUsuarioInscritoEl.classList.remove('oculto');
-             alert('✅ Inscrição concluída!');
-         });
-         btnAddJogador.addEventListener('click', () => {
-             const div = document.createElement('div');
-             div.style.margin = '0.6rem 0';
-             div.innerHTML = `<input type="tel" class="telefoneJogador" placeholder="Número do telefone" required><input type="number" class="abates" min="0" placeholder="Quantidade de abates" required>`;
-             camposJogadoresEl.appendChild(div);
-         });
-         formRegistro.addEventListener('submit', e => {
-             e.preventDefault();
-             if (!config.partidaIniciada) {
-                 alert('⚠️ Confirme primeiro que a partida começou na área do ADM!');
-                 return;
-             }
-             const data = document.getElementById('data').value;
-             const mapa = document.getElementById('mapa').value.trim();
-             const primeiroTel = document.getElementById('primeiroLugar').value.trim().replace(/\D/g, '');
-             const jogadores = [];
-             const tels = document.querySelectorAll('.telefoneJogador');
-             const abates = document.querySelectorAll('.abates');
-             for (let i = 0; i < tels.length; i++) {
-                 const tel = tels[i].value.trim().replace(/\D/g, '');
-                 const abt = Number(abates[i].value) || 0;
-                 if (!tel) continue;
-                 if (!inscritos.some(j => j.telefone === tel)) {
-                     alert(`❌ Telefone ${tel} não está cadastrado!`);
-                     return;
-                 }
-                 jogadores.push({ telefone: tel, abates: abt });
-             }
-             if (!inscritos.some(j => j.telefone === primeiroTel)) {
-                 alert('⚠️ O 1º lugar deve estar cadastrado!');
-                 return;
-             }
-             partidas.push({
-                 data,
-                 mapa,
-                 primeiroTelefone: primeiroTel,
-                 jogadores,
-                 confirmada: true
-             });
-             salvarDados();
-             atualizarPlacar();
-             formRegistro.reset();
-             camposJogadoresEl.innerHTML = `<input type="tel" class="telefoneJogador" placeholder="Número do telefone" required><input type="number" class="abates" min="0" placeholder="Quantidade de abates" required>`;
-             alert('✅ Resultado da partida salvo com sucesso!');
-         });
-         // Funções da senha
-         btnAcessarAdminEl.addEventListener('click', () => {
-             const senhaDigitada = senhaAdminEl.value.trim();
-             if (senhaDigitada === SENHA_ADMIN) {
-                 areaAdminCompletaEl.classList.remove('oculto');
-                 senhaAdminEl.value = '';
-                 senhaAdminEl.disabled = true;
-                 btnAcessarAdminEl.disabled = true;
-                 alert('✅ Acesso liberado!');
-             } else {
-                 alert('❌ Senha incorreta!');
-             }
-         });
-         btnSairAdminEl.addEventListener('click', () => {
-             areaAdminCompletaEl.classList.add('oculto');
-             senhaAdminEl.disabled = false;
-             btnAcessarAdminEl.disabled = false;
-             alert('🔒 Saída da área administrativa concluída.');
-         });
-         atualizarStatusSistema();
-         atualizarStatusPartida();
-         atualizarVagas();
-         atualizarListas();
-         atualizarAreaPix();
-         verificarAcessoUsuario();
-         atualizarPlacar();
-     </script>
- </body>
- </html>
+        // Elementos
+        const telaDesativada = document.getElementById("telaDesativada");
+        const conteudoPrincipal = document.getElementById("conteudoPrincipal");
+        const statusSistema = document.getElementById("statusSistema");
+        const ligarSistema = document.getElementById("ligarSistema");
+        const vagasOcupadas = document.getElementById("vagasOcupadas");
+        const vagasRestantes = document.getElementById("vagasRestantes");
+
+        // Funções
+        function atualizarTela() {
+            if (sistemaAtivo) {
+                telaDesativada.classList.add("oculto");
+                conteudoPrincipal.classList.remove("oculto");
+                statusSistema.textContent = "ATIVADO";
+                statusSistema.style.color = "#25D366";
+                ligarSistema.checked = true;
+            } else {
+                telaDesativada.classList.remove("oculto");
+                conteudoPrincipal.classList.add("oculto");
+                statusSistema.textContent = "DESATIVADO";
+                statusSistema.style.color = "#FF7090";
+                ligarSistema.checked = false;
+            }
+            atualizarVagas();
+            atualizarTabelaInscritos();
+            atualizarPlacar();
+        }
+
+        function atualizarVagas() {
+            vagasOcupadas.textContent = `✅ Inscritos: ${inscritos.length}`;
+            vagasRestantes.textContent = `🔄 Livres: ${LIMITE_VAGAS - inscritos.length}`;
+            document.getElementById("btnInscrever").disabled = inscritos.length >= LIMITE_VAGAS;
+        }
+
+        function salvarDados() {
+            localStorage.setItem("inscritos", JSON.stringify(inscritos));
+            localStorage.setItem("placar", JSON.stringify(placar));
+            localStorage.setItem("sistemaAtivo", JSON.stringify(sistemaAtivo));
+        }
+
+        // Acesso ao ADM
+        function abrirAreaAdmin() {
+            if (document.getElementById("senhaAdmin").value === SENHA_ADMIN || 
+                document.getElementById("senhaAdmin2").value === SENHA_ADMIN) {
+                document.getElementById("areaAdmin").classList.remove("oculto");
+                document.getElementById("senhaAdmin").value = "";
+                document.getElementById("senhaAdmin2").value = "";
+            } else {
+                alert("❌ Senha incorreta!");
+            }
+        }
+
+        // Eventos
+        ligarSistema.addEventListener("change", () => {
+            sistemaAtivo = ligarSistema.checked;
+            salvarDados();
+            atualizarTela();
+        });
+
+        document.getElementById("btnAcessarAdmin").addEventListener("click", abrirAreaAdmin);
+        document.getElementById("btnAcessarAdmin2").addEventListener("click", abrirAreaAdmin);
+        document.getElementById("sairAdmin").addEventListener("click", () => {
+            document.getElementById("areaAdmin").classList.add("oculto");
+        });
+
+        document.getElementById("limparInscritos").addEventListener("click", () => {
+            if (confirm("Deseja apagar apenas os inscritos? O placar permanece salvo.")) {
+                inscritos = [];
+                salvarDados();
+                atualizarTela();
+            }
+        });
+
+        atualizarTela();
+    </script>
+</body>
+</html>
